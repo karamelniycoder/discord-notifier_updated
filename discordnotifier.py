@@ -1,5 +1,6 @@
 import requests
 from sys import stderr
+from json import loads
 from time import sleep
 from msvcrt import getch
 from ctypes import windll
@@ -39,7 +40,6 @@ def check_posts(old_msg_id, chat_id, nickname):
 windll.kernel32.SetConsoleTitleW('Discord Notifier')
 logger.remove()
 logger.add(stderr, format="<white>{time:HH:mm:ss}</white> | <level>{level: <8}</level> | <cyan>{line}</cyan> - <white>{message}</white>")
-logger.info('123')
 
 tgbot_key = str(input('botkey from tg @botfather: '))
 ds_token = str(input('ds token from f12: '))
