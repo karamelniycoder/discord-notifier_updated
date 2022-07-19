@@ -5,21 +5,7 @@ from sys import stderr
 from msvcrt import getch
 from ctypes import windll
 from os import system
-
 import requests
-
-
-system("cls")
-windll.kernel32.SetConsoleTitleW('Discord Notifier')
-
-
-tgbot_key = str(input('botkey from tg @botfather: '))
-ds_token = str(input('dstoken from f12: '))
-ds_chatid = int(input('ds chatid from link: '))
-bot = TeleBot(tgbot_key)
-
-logger.remove()
-logger.add(stderr, format="<white>{time:HH:mm:ss}</white> | <level>{level: <8}</level> | <cyan>{line}</cyan> - <white>{message}</white>")
 
 
 def take_chat_id():
@@ -49,5 +35,15 @@ def check_posts(old_msg_id, chat_id, nickname):
 				old_msg_id = new_msg_id
 		except:
 			pass
+
+
+windll.kernel32.SetConsoleTitleW('Discord Notifier')
+logger.remove()
+logger.add(stderr, format="<white>{time:HH:mm:ss}</white> | <level>{level: <8}</level> | <cyan>{line}</cyan> - <white>{message}</white>")
+
+tgbot_key = str(input('botkey from tg @botfather: '))
+ds_token = str(input('dstoken from f12: '))
+ds_chatid = int(input('ds chatid from link: '))
+bot = TeleBot(tgbot_key)
 
 take_chat_id()
