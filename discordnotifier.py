@@ -5,16 +5,15 @@ from sys import stderr
 from msvcrt import getch
 from ctypes import windll
 from os import system
-# from dotenv import dotenv_values
+
 import requests
 
 
 system("cls")
 windll.kernel32.SetConsoleTitleW('Discord Notifier')
 
-# config = dotenv_values(".env")
+
 tgbot_key = str(input('botkey from tg @botfather: '))
-# tg_userid = int(input('tg userid from @my_id_bot: '))
 ds_token = str(input('dstoken from f12: '))
 ds_chatid = int(input('ds chatid from link: '))
 bot = TeleBot(tgbot_key)
@@ -40,12 +39,10 @@ def check_posts(old_msg_id, chat_id, nickname):
 				msg_text = loads(r.text)[0]['content']
 				if old_msg_id != None:
 					if len(msg_text) > 0:
-						# bot.send_message(int(tg_userid), 'New post:\n'+str(msg_text))
 						requests.post(f'https://api.telegram.org/bot{tgbot_key}/sendMessage',
 									  json={'chat_id': chat_id, 'text': f'New post:\n{str(msg_text)}'})
 
 					else:
-						# bot.send_message(int(tg_userid), 'New post: empty')
 						requests.post(f'https://api.telegram.org/bot{tgbot_key}/sendMessage',
 									  json={'chat_id': chat_id, 'text': 'New post: empty'})
 					logger.success('A new post. The information was successfully sent to Telegram')
