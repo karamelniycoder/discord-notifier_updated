@@ -8,8 +8,12 @@ from loguru import logger
 
 def take_chat_id():
 	r = requests.get(f'https://api.telegram.org/bot{tgbot_key}/getUpdates?offset=-1')
-	chat_id = r.json()['result'][0]['message']['chat']['id']
-	nickname = r.json()['result'][0]['message']['chat']['first_name']
+	try:
+		chat_id = r.json()['result'][0]['message']['chat']['id']
+		nickname = r.json()['result'][0]['message']['chat']['first_name']
+	except Exception as error:
+		print(f'Error: {error}\n {r.json()}')
+		exit(':(')
 	check_posts(None, chat_id, nickname)
 
 
